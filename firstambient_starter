@@ -1,0 +1,80 @@
+// AMBIENT TRACK STARTER
+// Copy this into strudel.cc and press Ctrl+Enter to play
+
+// Slow down the overall tempo
+setcpm(40)  // cycles per minute (default is 120)
+
+// Sweeping pad chords - slow evolving harmony
+const pads = note("<[c2,e3,g3] [d2,f3,a3] [e2,g3,b3] [f2,a3,c4]>")
+  .sound("sawtooth")
+  .lpf(sine.range(200, 500).slow(1))  // slowly sweeping filter
+  .gain(0.4)
+  .room(0.9)  // reverb effect
+  .delay(0.5)
+  .size(0.9)  // reverb size
+
+// Sparse, random percussion
+const perc = s("~ ~ [handchimes:6 | tambourine:1 | darbuka:1 | cowbell:3] ~")
+  .slow(2)
+  .gain(rand.range(0.3, 0.4))
+  .pan(rand)
+  .delay(0.7)
+  .room(0.8)
+
+// Deep, occasional bass notes
+const bass = note("c1 ~ ~ ~ ~ ~ ~ [f1 | g1]")
+  .slow(4)
+  .sound("sine")
+  .gain(0.5)
+  .lpf(150)
+  .room(0.7)
+
+// Atmospheric high notes - like wind chimes
+const atmosphere = note("[c5 | e5 | g5 | b5]")
+  .slow(3)
+  .sound("sine")
+  .gain(rand.range(0.1, 0.3))
+  .pan(rand)
+  .delay(0.8)
+  .delaytime(0.5)
+  .room(0.95)
+
+
+
+// Stack everything together
+stack(
+  pads,
+  perc,
+  bass,
+  atmosphere,
+  s("~ gm_shakuhachi:1 ~").slow(4).gain(0.8).room(1.9)
+)
+
+
+// ==========================================
+// EXPERIMENT WITH THESE VARIATIONS:
+// ==========================================
+
+// For more movement in the pads, try:
+// .lpf(sine.range(200, 1200).slow(16))
+
+// For even sparser percussion:
+// s("~ ~ ~ [perc:0 | perc:1 | perc:2] ~").slow(4)
+
+// Add some texture with filtered noise:
+// s("~ wind ~").slow(8).gain(0.2).hpf(2000).room(0.9)
+
+// For darker ambient, lower everything:
+// note("<[c2,e2,g2] [a1,c2,e2]>")
+
+// Try different percussion sounds:
+// s("~ ~ [metal:0 | click:1 | hand:2] ~")
+
+// Common Strudel effects:
+// .room() - reverb amount
+// .size() - reverb size  
+// .delay() - delay amount
+// .delaytime() - delay time
+// .lpf() - low pass filter
+// .hpf() - high pass filter
+// .gain() - volume
