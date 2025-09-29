@@ -1,0 +1,22 @@
+note("c3 e3 g3 a3")
+  .sound("gm_acoustic_guitar_nylon")
+  .release(1.5)
+  .superimpose(
+    x => x
+      .add(note(7))
+      .sound("gm_acoustic_guitar_nylon")
+      .gain(2.3)
+         // slightly sharp
+      .attack(1.1)      // longer attack = more gradual swell
+      .decay(0.3)       // how it falls from peak
+      .sustain(0.7)     // level it holds at
+      .release(3)       // very long release
+      .delay(0.1)       
+      .delaytime(0.05)  // adds a bit of echo
+      .room(0.95)
+      .speed(rand.range(0.95, 1.05))      // slightly slower = subtle detuning/stretch
+    .lpf(1200)
+  )
+  .room(0.6)
+.slow(4)
+.postgain(0.7)
