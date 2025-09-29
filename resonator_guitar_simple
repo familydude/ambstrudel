@@ -1,0 +1,17 @@
+const main = note("c3 e3 g3 a3")
+  .sound("gm_acoustic_guitar_nylon")
+  .release(1.5)
+  .room(0.6)
+
+const resonator = note("c3 e3 g3 a3")
+  .add(note("[7, 12]"))
+  .sound("gm_acoustic_guitar_nylon")
+  .gain(1.35)
+  .attack(3)      // 2 seconds slow fade in
+  .release(4)     // 4 seconds long tail
+  .delay(0.1)
+  .room(0.95)
+.size(8)
+.rfade(2)
+
+stack(main, resonator).slow(4)
