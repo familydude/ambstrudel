@@ -17,7 +17,7 @@ const drone2 = note("c1")
   .add(sine.range(-1, 1).slow(7))  // slow vibrato
   .sound("gm_contrabass")
   .gain(.5)
-  .lpf(1100)
+  .lpf(400)
 .attack(0.04)
 
 const rumble = s("brown")
@@ -27,4 +27,5 @@ const rumble = s("brown")
 
 stack(drone1, drone2, rumble,glitter)
   .room(0.5)
-.slow(2).loopAt(4)
+.unit("c").slow(32)
+ 
