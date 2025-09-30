@@ -1,0 +1,30 @@
+// "Bass rumble" @by djtaxes
+const glitter = s("fingercymbal*32")
+  .gain(rand.range(0.35, 1.75))
+  .speed(rand.range(2, 8))
+  .hpf(2000)
+  .pan(rand)
+  .delay(rand.range(0.3, 0.8))
+  .room(0.95)
+
+const drone1 = note("c1")
+  .sound("sine")
+  .gain(0.5)
+  .lpf(180)
+.attack(0.01)
+
+const drone2 = note("c1")
+  .add(sine.range(-1, 1).slow(7))  // slow vibrato
+  .sound("gm_contrabass")
+  .gain(.5)
+  .lpf(1100)
+.attack(0.04)
+
+const rumble = s("brown")
+  .lpf(400)
+  .gain(0.8)
+  .speed(0.3)
+
+stack(drone1, drone2, rumble,glitter)
+  .room(0.5)
+.slow(2).loopAt(4)
